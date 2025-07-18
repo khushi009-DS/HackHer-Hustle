@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Advisor Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== CHATBOT STYLES ===== */
+        #chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            max-width: 90vw;
+            height: 500px;
+            max-height: 70vh;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        
+        #chatbot-container.active {
+            display: flex;
+        }
+        
+        .chatbot-header {
+            background: #4e73df;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chatbot-title h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .chatbot-close {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: transform 0.2s;
+        }
+        
+        .chatbot-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 80%;
+            display: flex;
+        }
+        
+        .bot-message {
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+        }
+        
+        .message-content {
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.5;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+        
+        .bot-message .message-content {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-bottom-left-radius: 5px;
+            color: #333;
+        }
+        
+        .user-message .message-content {
+            background: #4e73df;
+            color: white;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 15px;
+            background: #fff;
+            border-top: 1px solid #eee;
+            flex-shrink: 0;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 14px;
+            transition: border 0.3s;
+        }
+        
+        .chatbot-input input:focus {
+            border-color: #4e73df;
+        }
+        
+        .chatbot-input button {
+            background: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .chatbot-input button:hover {
+            background: #3a5bc7;
+        }
+        
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #4e73df;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .chatbot-toggle i {
+            font-size: 24px;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .typing-indicator {
+            display: inline-flex;
+            gap: 5px;
+            padding: 10px 15px;
+            background: #f0f0f0;
+            border-radius: 20px;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #666;
+            border-radius: 50%;
+            display: inline-block;
+            animation: typing 1s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typing {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .quick-question {
+            background: #e9ecef;
+            border-radius: 15px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-question:hover {
+            background: #dee2e6;
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            #chatbot-container {
+                width: 90vw;
+                right: 5vw;
+                bottom: 80px;
+            }
+            
+            .chatbot-toggle {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Chatbot Container -->
+    <div id="chatbot-container">
+        <div class="chatbot-header">
+            <div class="chatbot-title">
+                <i class="fas fa-robot"></i>
+                <h3>CareerBot</h3>
+            </div>
+            <button class="chatbot-close" id="chatbot-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>Hello! I'm your AI Career Advisor. How can I help you today?</p>
+                    <p>Here are some common questions:</p>
+                    <div class="quick-questions">
+                        <div class="quick-question" onclick="insertQuestion('How can I improve my resume?')">Improve my resume</div>
+                        <div class="quick-question" onclick="insertQuestion('What are common interview questions?')">Interview questions</div>
+                        <div class="quick-question" onclick="insertQuestion('How to negotiate salary?')">Salary negotiation</div>
+                        <div class="quick-question" onclick="insertQuestion('Best job search strategies?')">Job search tips</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="user-input" placeholder="Ask about careers..." autocomplete="off">
+            <button id="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Toggle Button -->
+    <button class="chatbot-toggle" id="chatbot-toggle">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <script>
+        // ===== WORKING CHATBOT LOGIC =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const chatbotContainer = document.getElementById('chatbot-container');
+            const chatbotToggle = document.getElementById('chatbot-toggle');
+            const chatbotClose = document.getElementById('chatbot-close');
+            const chatMessages = document.getElementById('chatbot-messages');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+
+            // Toggle Chatbot Visibility
+            function toggleChatbot() {
+                chatbotContainer.classList.toggle('active');
+                if (chatbotContainer.classList.contains('active')) {
+                    userInput.focus();
+                }
+            }
+
+            chatbotToggle.addEventListener('click', toggleChatbot);
+            chatbotClose.addEventListener('click', toggleChatbot);
+
+            // Predefined responses for common questions
+            const predefinedResponses = {
+                "resume": {
+                    "How can I improve my resume?": "**Resume Improvement Tips:**\n\n1. **Tailor it**: Customize for each job application\n2. **Use action verbs**: 'Managed', 'Developed', 'Increased'\n3. **Quantify achievements**: 'Boosted sales by 30%'\n4. **Keep it concise**: 1-2 pages max\n5. **Clean format**: Use consistent formatting\n\nWould you like me to review a specific section?",
+                    "What skills should I include?": "**Top Skills to Include:**\n\n- **Technical skills**: Relevant to your field (e.g., Python, Photoshop)\n- **Soft skills**: Communication, teamwork\n- **Certifications**: Any relevant credentials\n- **Languages**: If multilingual\n\n*Tip:* Match skills to the job description for better results!",
+                    "How long should my resume be?": "**Resume Length Guidelines:**\n\n- **Entry-level**: 1 page\n- **Mid-career**: 1-2 pages\n- **Senior/Executive**: 2 pages max\n\n*Quality over quantity!* Only include relevant experience from the last 10-15 years."
+                },
+                "interview": {
+                    "What are common interview questions?": "**Common Interview Questions:**\n\n1. 'Tell me about yourself'\n2. 'What are your strengths/weaknesses?'\n3. 'Why do you want this job?'\n4. 'Describe a challenge you faced'\n5. 'Where do you see yourself in 5 years?'\n\nWould you like tips on how to answer any of these?",
+                    "How to answer 'Tell me about yourself'?": "**Perfect Answer Structure:**\n\n1. **Present**: Current role and key responsibilities\n2. **Past**: Relevant experience and achievements\n3. **Future**: Why you're excited about this opportunity\n\n*Example:* 'I'm currently a marketing specialist at X, where I've increased engagement by 40%. Previously, I...'",
+                    "What questions should I ask the interviewer?": "**Smart Questions to Ask:**\n\n- 'What does success look like in this role?'\n- 'How would you describe the company culture?'\n- 'What are the biggest challenges facing the team?'\n- 'What opportunities for growth exist?'\n\n*Asking questions shows engagement!*"
+                },
+                "job_search": {
+                    "Best job search strategies?": "**Effective Job Search Strategies:**\n\n1. **Network**: 70-80% of jobs aren't advertised\n2. **Optimize LinkedIn**: Complete profile, engage with content\n3. **Target companies**: Research and reach out directly\n4. **Follow up**: After applications and interviews\n5. **Upskill**: Take courses to fill gaps\n\nWhich strategy would you like to explore more?",
+                    "How to find unadvertised jobs?": "**Finding Hidden Opportunities:**\n\n- Attend industry events and conferences\n- Connect with employees at target companies\n- Reach out to hiring managers directly\n- Join professional associations\n- Use LinkedIn to identify growing companies\n\nWould you like help drafting a networking message?",
+                    "Should I use multiple job boards?": "**Job Board Strategy:**\n\n✅ **Do:**\n- Use niche boards for your industry\n- Set up alerts on LinkedIn/Indeed\n- Check company career pages directly\n\n❌ **Don't:**\n- Apply to everything indiscriminately\n- Rely only on big boards\n- Forget to track applications\n\nI can suggest specific boards for your field!"
+                },
+                "salary": {
+                    "How to negotiate salary?": "**Salary Negotiation Tips:**\n\n1. **Research**: Know market rates (Glassdoor, Payscale)\n2. **Delay**: Don't discuss numbers too early\n3. **Anchor high**: Give a range above your target\n4. **Focus on value**: Highlight what you bring\n5. **Consider total package**: Benefits, bonuses, flexibility\n\nWould you like a script for negotiating?",
+                    "What if they ask my current salary?": "**Handling Current Salary Questions:**\n\nYou can say:\n- 'I prefer to focus on the value I can add in this role'\n- 'I'm looking for a competitive package based on market rates'\n- 'My research suggests $X-$Y is typical for this role'\n\n*Remember:* In some locations, they can't legally ask this!",
+                    "When to bring up salary?": "**Salary Discussion Timing:**\n\n- **First call**: If recruiter asks, give a range\n- **Interview process**: Wait until they're invested in you\n- **Offer stage**: Best time to negotiate details\n\n*Tip:* Always let them mention numbers first if possible!"
+                }
+            };
+
+            // Dynamic AI Response Generator (simplified for demo)
+            async function getCareerResponse(prompt) {
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1500));
+                
+                // Check for predefined responses first
+                const lowerPrompt = prompt.toLowerCase();
+                
+                if (lowerPrompt.includes("resume") || lowerPrompt.includes("cv")) {
+                    return findBestResponse("resume", prompt);
+                }
+                else if (lowerPrompt.includes("interview") || lowerPrompt.includes("meeting")) {
+                    return findBestResponse("interview", prompt);
+                }
+                else if (lowerPrompt.includes("job") || lowerPrompt.includes("search") || lowerPrompt.includes("hunt")) {
+                    return findBestResponse("job_search", prompt);
+                }
+                else if (lowerPrompt.includes("salary") || lowerPrompt.includes("pay") || lowerPrompt.includes("negotiate")) {
+                    return findBestResponse("salary", prompt);
+                }
+                else {
+                    return getFallbackResponse(prompt);
+                }
+            }
+            
+            function findBestResponse(category, prompt) {
+                // Try to find the most matching question
+                const questions = Object.keys(predefinedResponses[category]);
+                let bestMatch = "";
+                let bestScore = 0;
+                
+                for (const question of questions) {
+                    const score = calculateSimilarity(prompt, question);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestMatch = question;
+                    }
+                }
+                
+                if (bestScore > 0.4) { // Threshold for considering it a match
+                    return predefinedResponses[category][bestMatch];
+                } else {
+                    return getFallbackResponse(prompt);
+                }
+            }
+            
+            // Simple similarity calculation (for demo purposes)
+            function calculateSimilarity(str1, str2) {
+                const words1 = str1.toLowerCase().split(/\s+/);
+                const words2 = str2.toLowerCase().split(/\s+/);
+                const intersection = words1.filter(word => words2.includes(word));
+                return intersection.length / Math.max(words1.length, words2.length);
+            }
+
+            // Fallback for unrecognized questions
+            function getFallbackResponse(prompt) {
+                return `I specialize in career advice. Here are some topics I can help with:
+                
+                **Resume Help**
+                • Formatting tips
+                • Keyword optimization
+                • Achievement wording
+                
+                **Interview Prep**
+                • Common questions
+                • STAR method examples
+                • Follow-up emails
+                
+                Try asking something like:
+                • "How to explain employment gaps?"
+                • "What to wear for a virtual interview?"
+                • "Best way to follow up after applying?"`;
+            }
+
+            // Send Message Handler
+            async function sendMessage() {
+                const message = userInput.value.trim();
+                if (!message) return;
+
+                addMessage(message, 'user');
+                userInput.value = '';
+                
+                const response = await getCareerResponse(message);
+                addMessage(response, 'bot');
+                
+                // Add quick follow-up questions if response is predefined
+                addFollowUpQuestions(message, response);
+            }
+
+            // Add relevant quick questions after response
+            function addFollowUpQuestions(userPrompt, botResponse) {
+                const lowerPrompt = userPrompt.toLowerCase();
+                let category = "";
+                
+                if (lowerPrompt.includes("resume") || lowerPrompt.includes("cv")) {
+                    category = "resume";
+                }
+                else if (lowerPrompt.includes("interview")) {
+                    category = "interview";
+                }
+                else if (lowerPrompt.includes("job") || lowerPrompt.includes("search")) {
+                    category = "job_search";
+                }
+                else if (lowerPrompt.includes("salary") || lowerPrompt.includes("pay")) {
+                    category = "salary";
+                }
+                
+                if (category && predefinedResponses[category]) {
+                    const questions = Object.keys(predefinedResponses[category]);
+                    // Filter out the one already asked
+                    const followUps = questions.filter(q => !userPrompt.includes(q.substring(0, 15)));
+                    
+                    if (followUps.length > 0) {
+                        setTimeout(() => {
+                            const quickQuestionsDiv = document.createElement('div');
+                            quickQuestionsDiv.className = 'quick-questions';
+                            quickQuestionsDiv.style.marginTop = '10px';
+                            
+                            // Add up to 3 follow-up questions
+                            followUps.slice(0, 3).forEach(question => {
+                                const qDiv = document.createElement('div');
+                                qDiv.className = 'quick-question';
+                                qDiv.textContent = question;
+                                qDiv.onclick = () => {
+                                    userInput.value = question;
+                                    sendMessage();
+                                };
+                                quickQuestionsDiv.appendChild(qDiv);
+                            });
+                            
+                            // Add to the last bot message
+                            const lastBotMessage = document.querySelector('.bot-message:last-child .message-content');
+                            if (lastBotMessage) {
+                                lastBotMessage.appendChild(document.createElement('br'));
+                                lastBotMessage.appendChild(document.createElement('br'));
+                                lastBotMessage.appendChild(document.createTextNode('You might also ask:'));
+                                lastBotMessage.appendChild(quickQuestionsDiv);
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            }
+                        }, 300);
+                    }
+                }
+            }
+
+            // Event Listeners
+            sendButton.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendMessage();
+            });
+
+            // Insert question from quick question button
+            window.insertQuestion = function(question) {
+                userInput.value = question;
+                userInput.focus();
+            };
+
+            // UI Helpers
+            function addMessage(content, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}-message`;
+                messageDiv.innerHTML = `
+                    <div class="message-content">
+                        ${formatMarkdown(content)}
+                    </div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function formatMarkdown(text) {
+                return text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\n\- (.*?)(\n|$)/g, '<br>• $1')
+                    .replace(/\n\d+\. (.*?)(\n|$)/g, '<br>$1. $2')
+                    .replace(/\n/g, '<br>');
+            }
+
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot-message';
+                typingDiv.id = 'typing-indicator';
+                typingDiv.innerHTML = `
+                    <div class="message-content">
+                        <div class="typing-indicator">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                `;
+                chatMessages.appendChild(typingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function removeTypingIndicator() {
+                const indicator = document.getElementById('typing-indicator');
+                if (indicator) indicator.remove();
+            }
+        });
+    </script>
+</body>
+</html>
