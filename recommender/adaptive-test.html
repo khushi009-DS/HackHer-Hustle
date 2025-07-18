@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Adaptive Competency Test</title>
+  <style>
+   /* GENERAL RESET & BODY */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: linear-gradient(120deg, #f2f6fc 0%, #eef3ff 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  color: #252c3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+/* CARD CONTAINER */
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 36px 0 rgba(39, 68, 165, 0.08), 0 1.5px 5px rgba(200,200,220,0.11);
+  padding: 2.1rem 2.1rem 2rem 2.1rem;
+  max-width: 400px;
+  width: 100%;
+  margin: 24px 0;
+  animation: fadeIn 0.7s cubic-bezier(.17,1,.35,1);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(42px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* TITLES */
+h2 {
+  color: #3560e0;
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4em;
+  letter-spacing: 0.03em;
+}
+h3 {
+  color: #232c4b;
+  margin: 1.3em 0 0.6em 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+select, button {
+  width: 100%;
+  font-size: 1.04rem;
+  border-radius: 9px;
+  margin-bottom: 1.3rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow .22s, border-color .24s;
+  font-family: inherit;
+  border: none;
+}
+
+select {
+  padding: 0.7em 0.6em;
+  background: #f6f9fc;
+  color: #223355;
+  box-shadow: 0 2px 10px rgba(44,89,173,.08);
+  font-weight: 500;
+}
+
+button {
+  background: linear-gradient(91deg, #3560e0 47%, #17b0f1 115%);
+  color: #fff;
+  font-weight: 700;
+  padding: 0.72em 1.2em;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 3px 12px rgba(53,96,224,0.10);
+  transition: background .20s, transform .16s;
+  margin-top: 0.1em;
+  margin-bottom: 0.9em;
+  letter-spacing: 1px;
+}
+button:hover, .choices button:hover {
+  background: linear-gradient(91deg, #17b0f1 20%, #5555e6 100%);
+  color: #f0f7ff;
+  transform: translateY(-2px) scale(1.025);
+}
+
+/* QUESTION / CHOICES BUTTONS */
+.choices {
+  margin-top: 0.8em;
+  margin-bottom: 1.2em;
+}
+.choices button {
+  display: block;
+  width: 100%;
+  background: #f1f4fa;
+  color: #223355;
+  font-size: 1em;
+  margin-bottom: 0.85rem;
+  padding: 0.86em 0.65em;
+  border-radius: 8px;
+  border: none;
+  text-align: left;
+  font-weight: 500;
+  box-shadow: 0 1px 3px rgba(44,40,110,0.06);
+  transition: background .22s, color .19s, transform .10s;
+}
+.choices button.selected {
+  background: linear-gradient(101deg, #b1e5ff 6%, #e2eefd 100%);
+  color: #2649b1;
+  font-weight: 700;
+  transform: scale(1.025);
+}
+.choices button:active {
+  background: #e3edfe;
+}
+
+/* PROGRESS & INFO */
+.progress-info {
+  margin-top: 0.5rem;
+  margin-bottom: 0.2rem;
+  font-size: 1em;
+  color: #58598c;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* RESULT BOX */
+.result-box {
+  color: #417e56;
+  background: linear-gradient(-84deg, #ecfff3 60%, #c9f4ff 100%);
+  border-radius: 13px;
+  padding: 1.35em 1em 1em 1em;
+  margin-top: 0.8em;
+  text-align: center;
+  font-size: 1.11em;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1.3px solid #ccedee;
+  animation: resultGlow 0.55s cubic-bezier(.18,1.1,.44,1.02);
+}
+@keyframes resultGlow {
+  0% { box-shadow: 0 0 0px #a5e7f8; opacity:0;}
+  100% { box-shadow: 0 0 26px #a5e7f8; opacity:1;}
+}
+
+/* HIDE SCREENS BY UTILITY CLASS */
+.hidden { display: none; }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+  .card {
+    max-width: 97vw;
+    padding: 1.25rem 0.7rem 1rem 0.7rem;
+  }
+  h2 { font-size: 1.24rem;}
+}
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Adaptive Competency Diagnostic Test</h2>
+
+  <div id="start-screen">
+    <label for="domain">Choose a domain:</label>
+    <select id="domain">
+      <option disabled selected>Select domain</option>
+      <option value="Computer Engineering">Computer Engineering</option>
+      <option value="IT">IT</option>
+      <option value="AIML">AIML</option>
+      <option value="Cybersecurity">Cybersecurity</option>
+      <option value="Leadership Skills">Leadership Skills</option>
+      <option value="Communication Skills">Communication Skills</option>
+    </select>
+    <button onclick="startTest()">Start Test</button>
+  </div>
+
+  <div id="question-screen" class="hidden">
+    <h3 id="question-text"></h3>
+    <div id="choices-container" class="choices"></div>
+    <div id="progress"></div>
+  </div>
+
+  <div id="result-screen" class="hidden">
+    <h3>Test Completed</h3>
+    <div id="result-text" class="result"></div>
+    <button onclick="location.reload()">Retake Test</button>
+  </div>
+</div>
+
+<script>
+  let allQuestions = [];
+  let filteredQuestions = [];
+  let selectedDomain = "";
+  let currentDifficulty = "medium";
+  let difficultyPoints = { easy: 1, medium: 2, hard: 3 };
+  let currentIndex = 0;
+  let currentQuestion = null;
+  let score = 0;
+  const maxQuestions = 5;
+
+  // Load questions.json dynamically
+  fetch("question.json")
+    .then(response => response.json())
+    .then(data => {
+      allQuestions = data;
+    })
+    .catch(error => {
+      alert("Failed to load question.json. Make sure it is in the same directory.");
+      console.error("Fetch Error:", error);
+    });
+
+  function startTest() {
+    const domainSelect = document.getElementById("domain");
+    selectedDomain = domainSelect.value;
+
+    if (!selectedDomain) {
+      alert("Please select a domain.");
+      return;
+    }
+
+    filteredQuestions = allQuestions.filter(q => q.domain === selectedDomain);
+    if (filteredQuestions.length < 3) {
+      alert("Not enough questions available for the selected domain.");
+      return;
+    }
+
+    currentIndex = 0;
+    score = 0;
+    currentDifficulty = "medium";
+
+    document.getElementById("start-screen").classList.add("hidden");
+    document.getElementById("question-screen").classList.remove("hidden");
+
+    showNextQuestion();
+  }
+
+  function showNextQuestion() {
+    if (currentIndex >= maxQuestions) {
+      return showResult();
+    }
+
+    const questionsAtDifficulty = filteredQuestions.filter(q => q.difficulty === currentDifficulty);
+    if (questionsAtDifficulty.length === 0) {
+      // Fallback to any question if no matching difficulty
+      currentQuestion = filteredQuestions[Math.floor(Math.random() * filteredQuestions.length)];
+    } else {
+      currentQuestion = questionsAtDifficulty[Math.floor(Math.random() * questionsAtDifficulty.length)];
+    }
+
+    // Remove the question so it's not repeated
+    filteredQuestions = filteredQuestions.filter(q => q !== currentQuestion);
+
+    document.getElementById("question-text").textContent = `Q${currentIndex + 1}: ${currentQuestion.question}`;
+    const choicesContainer = document.getElementById("choices-container");
+    choicesContainer.innerHTML = "";
+
+    currentQuestion.choices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice;
+      btn.onclick = () => handleAnswer(choice);
+      choicesContainer.appendChild(btn);
+    });
+
+    document.getElementById("progress").textContent = 
+      `Difficulty: ${currentDifficulty.toUpperCase()} | Question ${currentIndex + 1} of ${maxQuestions}`;
+  }
+
+  function handleAnswer(selectedAnswer) {
+    const correct = selectedAnswer === currentQuestion.answer;
+    if (correct) {
+      score += difficultyPoints[currentQuestion.difficulty];
+      if (currentDifficulty === "easy") currentDifficulty = "medium";
+      else if (currentDifficulty === "medium") currentDifficulty = "hard";
+    } else {
+      if (currentDifficulty === "hard") currentDifficulty = "medium";
+      else if (currentDifficulty === "medium") currentDifficulty = "easy";
+    }
+
+    currentIndex++;
+    showNextQuestion();
+  }
+
+  function showResult() {
+    document.getElementById("question-screen").classList.add("hidden");
+    document.getElementById("result-screen").classList.remove("hidden");
+
+    const maxScore = maxQuestions * 3;
+    let level = "Beginner";
+    if (score > maxScore * 0.7) level = "Advanced";
+    else if (score > maxScore * 0.4) level = "Intermediate";
+
+    document.getElementById("result-text").innerHTML = `
+      <strong>Domain:</strong> ${selectedDomain}<br>
+      <strong>Total Score:</strong> ${score} / ${maxScore}<br>
+      <strong>Level Achieved:</strong> ${level}
+    `;
+  }
+</script>
+
+</body>
+</html>

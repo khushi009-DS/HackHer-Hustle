@@ -1,0 +1,644 @@
+[
+    
+    {
+      "id": 1,
+      "domain": "Computer Engineering",
+      "difficulty": "easy",
+      "question": "What does CPU stand for?",
+      "choices": ["Central Process Unit", "Central Processing Unit", "Computer Personal Unit", "Central Power Unit"],
+      "answer": "Central Processing Unit"
+    },
+    {
+      "id": 2,
+      "domain": "Computer Engineering",
+      "difficulty": "easy",
+      "question": "Which device is used to connect multiple computers in a network?",
+      "choices": ["Switch", "Mouse", "Monitor", "Keyboard"],
+      "answer": "Switch"
+    },
+    {
+      "id": 3,
+      "domain": "Computer Engineering",
+      "difficulty": "easy",
+      "question": "Which of these is a non-volatile memory?",
+      "choices": ["RAM", "Cache", "ROM", "Register"],
+      "answer": "ROM"
+    },
+    {
+      "id": 4,
+      "domain": "Computer Engineering",
+      "difficulty": "medium",
+      "question": "Which tool would you typically use to design a digital circuit?",
+      "choices": ["VHDL", "Apache Spark", "Microsoft Word", "SAP"],
+      "answer": "VHDL"
+    },
+    {
+      "id": 5,
+      "domain": "Computer Engineering",
+      "difficulty": "medium",
+      "question": "What is the main role of an operating system?",
+      "choices": ["Document Editing", "Managing Hardware Resources", "Designing Circuits", "Compiling Code"],
+      "answer": "Managing Hardware Resources"
+    },
+    {
+      "id": 6,
+      "domain": "Computer Engineering",
+      "difficulty": "medium",
+      "question": "Which data structure is typically used for implementing a FIFO queue?",
+      "choices": ["Stack", "Linked List", "Array", "Queue"],
+      "answer": "Queue"
+    },
+    {
+      "id": 7,
+      "domain": "Computer Engineering",
+      "difficulty": "hard",
+      "question": "What technique is crucial for ensuring data consistency in distributed systems?",
+      "choices": ["Consensus Algorithm", "Simple Sorting", "Static Typing", "DHCP Assignment"],
+      "answer": "Consensus Algorithm"
+    },
+    {
+      "id": 8,
+      "domain": "Computer Engineering",
+      "difficulty": "hard",
+      "question": "Which protocol is mainly used for error detection and correction in data link layer?",
+      "choices": ["Ethernet", "TCP", "HDLC", "UDP"],
+      "answer": "HDLC"
+    },
+    {
+      "id": 9,
+      "domain": "Computer Engineering",
+      "difficulty": "hard",
+      "question": "Name the hardware component responsible for arithmetic and logic operations in a computer.",
+      "choices": ["Memory", "ALU", "Motherboard", "GPU"],
+      "answer": "ALU"
+    },
+    {
+      "id": 10,
+      "domain": "Computer Engineering",
+      "difficulty": "medium",
+      "question": "Which of the following best describes a microcontroller?",
+      "choices": ["A full computer", "A programmable circuit", "A memory chip", "A display device"],
+      "answer": "A programmable circuit"
+    },
+  
+    
+    {
+      "id": 11,
+      "domain": "IT",
+      "difficulty": "easy",
+      "question": "What does LAN stand for?",
+      "choices": ["Local Area Network", "Large Area Network", "Light Access Node", "Logical Access Network"],
+      "answer": "Local Area Network"
+    },
+    {
+      "id": 12,
+      "domain": "IT",
+      "difficulty": "easy",
+      "question": "Which of these is an example of an operating system?",
+      "choices": ["Linux", "MS Word", "Chrome", "Oracle"],
+      "answer": "Linux"
+    },
+    {
+      "id": 13,
+      "domain": "IT",
+      "difficulty": "easy",
+      "question": "What is the full form of URL?",
+      "choices": ["Uniform Resource Locator", "United Resource List", "Universal Resource Link", "Unified Reference Language"],
+      "answer": "Uniform Resource Locator"
+    },
+    {
+      "id": 14,
+      "domain": "IT",
+      "difficulty": "medium",
+      "question": "Which of these is a database management system?",
+      "choices": ["MySQL", "Excel", "Notepad", "Paint"],
+      "answer": "MySQL"
+    },
+    {
+      "id": 15,
+      "domain": "IT",
+      "difficulty": "medium",
+      "question": "What is the difference between RAM and ROM?",
+      "choices": [
+        "RAM is permanent, ROM is temporary",
+        "RAM is temporary, ROM is permanent",
+        "Both are permanent",
+        "Both are temporary"
+      ],
+      "answer": "RAM is temporary, ROM is permanent"
+    },
+    {
+      "id": 16,
+      "domain": "IT",
+      "difficulty": "medium",
+      "question": "Which protocol is primarily used to send emails?",
+      "choices": ["SMTP", "HTTP", "FTP", "SNMP"],
+      "answer": "SMTP"
+    },
+    {
+      "id": 17,
+      "domain": "IT",
+      "difficulty": "hard",
+      "question": "Which OSI layer is responsible for routing?",
+      "choices": ["Network", "Transport", "Data Link", "Session"],
+      "answer": "Network"
+    },
+    {
+      "id": 18,
+      "domain": "IT",
+      "difficulty": "hard",
+      "question": "What is 'virtualization' in IT?",
+      "choices": [
+        "Creating virtual machines on a physical server",
+        "Establishing internet connection",
+        "Formatting hard drives",
+        "Compressing data"
+      ],
+      "answer": "Creating virtual machines on a physical server"
+    },
+    {
+      "id": 19,
+      "domain": "IT",
+      "difficulty": "hard",
+      "question": "Which tool is used for network packet analysis?",
+      "choices": ["Wireshark", "Photoshop", "Eclipse", "Notepad++"],
+      "answer": "Wireshark"
+    },
+    {
+      "id": 20,
+      "domain": "IT",
+      "difficulty": "medium",
+      "question": "What is RAID in storage technologies?",
+      "choices": [
+        "Redundant Array of Independent Disks",
+        "Random Access for Internet Data",
+        "Rapid Application In Development",
+        "None of the above"
+      ],
+      "answer": "Redundant Array of Independent Disks"
+    },
+  
+    
+    {
+      "id": 21,
+      "domain": "AIML",
+      "difficulty": "easy",
+      "question": "What does AI stand for?",
+      "choices": ["Artificial Intelligence", "Advanced Internet", "Automated Interaction", "Algorithmic Input"],
+      "answer": "Artificial Intelligence"
+    },
+    {
+      "id": 22,
+      "domain": "AIML",
+      "difficulty": "easy",
+      "question": "Which is a common language for AI programming?",
+      "choices": ["Python", "HTML", "PHP", "CSS"],
+      "answer": "Python"
+    },
+    {
+      "id": 23,
+      "domain": "AIML",
+      "difficulty": "easy",
+      "question": "What is 'training' in machine learning?",
+      "choices": [
+        "Providing examples to a model",
+        "Painting a computer",
+        "Rebooting a computer",
+        "Backing up files"
+      ],
+      "answer": "Providing examples to a model"
+    },
+    {
+      "id": 24,
+      "domain": "AIML",
+      "difficulty": "medium",
+      "question": "Which algorithm is used for classification?",
+      "choices": ["Decision Tree", "Bubble Sort", "Breadth-First Search", "Quicksort"],
+      "answer": "Decision Tree"
+    },
+    {
+      "id": 25,
+      "domain": "AIML",
+      "difficulty": "medium",
+      "question": "What does 'supervised learning' require?",
+      "choices": [
+        "Labelled data",
+        "No data",
+        "Only images",
+        "Unlabelled data"
+      ],
+      "answer": "Labelled data"
+    },
+    {
+      "id": 26,
+      "domain": "AIML",
+      "difficulty": "medium",
+      "question": "Which activation function can introduce non-linearity to neural networks?",
+      "choices": ["ReLU", "Sum", "Average", "Modulo"],
+      "answer": "ReLU"
+    },
+    {
+      "id": 27,
+      "domain": "AIML",
+      "difficulty": "hard",
+      "question": "In ML, what is 'overfitting'?",
+      "choices": [
+        "Model fits the training data too well and fails on new data",
+        "Model fits both training and test data well",
+        "Model fails to learn",
+        "None of the above"
+      ],
+      "answer": "Model fits the training data too well and fails on new data"
+    },
+    {
+      "id": 28,
+      "domain": "AIML",
+      "difficulty": "hard",
+      "question": "Which of the following is an unsupervised learning technique?",
+      "choices": ["K-Means Clustering", "Linear Regression", "Decision Trees", "Logistic Regression"],
+      "answer": "K-Means Clustering"
+    },
+    {
+      "id": 29,
+      "domain": "AIML",
+      "difficulty": "hard",
+      "question": "What is the main idea behind 'gradient descent'?",
+      "choices": [
+        "Minimize the loss function",
+        "Maximize output",
+        "Randomly assign weights",
+        "None of the above"
+      ],
+      "answer": "Minimize the loss function"
+    },
+    {
+      "id": 30,
+      "domain": "AIML",
+      "difficulty": "medium",
+      "question": "Which metric is suitable for evaluating a regression model?",
+      "choices": ["Mean Squared Error", "Accuracy", "Recall", "Silhouette Score"],
+      "answer": "Mean Squared Error"
+    },
+  
+    
+    {
+      "id": 31,
+      "domain": "Cybersecurity",
+      "difficulty": "easy",
+      "question": "What does 'phishing' mean?",
+      "choices": [
+        "Fraudulent attempts to obtain sensitive information",
+        "Catching fish",
+        "Writing code",
+        "Data backup"
+      ],
+      "answer": "Fraudulent attempts to obtain sensitive information"
+    },
+    {
+      "id": 32,
+      "domain": "Cybersecurity",
+      "difficulty": "easy",
+      "question": "A strong password is usually:",
+      "choices": [
+        "Long and contains letters, numbers, and symbols",
+        "Short and simple",
+        "Only numbers",
+        "Your name"
+      ],
+      "answer": "Long and contains letters, numbers, and symbols"
+    },
+    {
+      "id": 33,
+      "domain": "Cybersecurity",
+      "difficulty": "easy",
+      "question": "The process of encoding data to prevent unauthorized access is called:",
+      "choices": ["Encryption", "Decryption", "Phishing", "Debugging"],
+      "answer": "Encryption"
+    },
+    {
+      "id": 34,
+      "domain": "Cybersecurity",
+      "difficulty": "medium",
+      "question": "What is a firewall primarily used for?",
+      "choices": [
+        "Block unauthorized access",
+        "Speed up browsing",
+        "Compress files",
+        "Download music"
+      ],
+      "answer": "Block unauthorized access"
+    },
+    {
+      "id": 35,
+      "domain": "Cybersecurity",
+      "difficulty": "medium",
+      "question": "Which of the following is a type of malware?",
+      "choices": ["Trojan", "Driver", "Compiler", "Scanner"],
+      "answer": "Trojan"
+    },
+    {
+      "id": 36,
+      "domain": "Cybersecurity",
+      "difficulty": "medium",
+      "question": "Which protocol is used for secure web browsing?",
+      "choices": ["HTTPS", "FTP", "SMTP", "POP3"],
+      "answer": "HTTPS"
+    },
+    {
+      "id": 37,
+      "domain": "Cybersecurity",
+      "difficulty": "hard",
+      "question": "Which is a common method of privilege escalation?",
+      "choices": ["Exploiting software vulnerabilities", "Changing wallpaper", "Using a VPN", "Rebooting"],
+      "answer": "Exploiting software vulnerabilities"
+    },
+    {
+      "id": 38,
+      "domain": "Cybersecurity",
+      "difficulty": "hard",
+      "question": "What is 'zero-day' vulnerability?",
+      "choices": [
+        "A vulnerability unknown to the vendor",
+        "A vulnerability reported years ago",
+        "A vulnerability that cannot be fixed",
+        "A random software bug"
+      ],
+      "answer": "A vulnerability unknown to the vendor"
+    },
+    {
+      "id": 39,
+      "domain": "Cybersecurity",
+      "difficulty": "hard",
+      "question": "Which cryptographic algorithm is symmetric?",
+      "choices": ["AES", "RSA", "DSA", "ECC"],
+      "answer": "AES"
+    },
+    {
+      "id": 40,
+      "domain": "Cybersecurity",
+      "difficulty": "medium",
+      "question": "MFA stands for:",
+      "choices": [
+        "Multi-Factor Authentication",
+        "Multi-Functional Application",
+        "Major File Access",
+        "Memory File Allocation"
+      ],
+      "answer": "Multi-Factor Authentication"
+    },
+  
+   
+    {
+      "id": 41,
+      "domain": "Leadership Skills",
+      "difficulty": "easy",
+      "question": "Which is an important quality for a leader?",
+      "choices": [
+        "Effective communication",
+        "Ignoring team members",
+        "Always blaming others",
+        "Taking no feedback"
+      ],
+      "answer": "Effective communication"
+    },
+    {
+      "id": 42,
+      "domain": "Leadership Skills",
+      "difficulty": "easy",
+      "question": "Leaders should:",
+      "choices": [
+        "Motivate their team",
+        "Discourage others",
+        "Avoid responsibilities",
+        "Ignore problems"
+      ],
+      "answer": "Motivate their team"
+    },
+    {
+      "id": 43,
+      "domain": "Leadership Skills",
+      "difficulty": "easy",
+      "question": "Which one is a leadership style?",
+      "choices": ["Democratic", "Isolated", "Lazy", "Unresponsive"],
+      "answer": "Democratic"
+    },
+    {
+      "id": 44,
+      "domain": "Leadership Skills",
+      "difficulty": "medium",
+      "question": "What does 'delegation' mean in leadership?",
+      "choices": [
+        "Assigning tasks to team members",
+        "Doing everything yourself",
+        "Ignoring tasks",
+        "Micromanaging"
+      ],
+      "answer": "Assigning tasks to team members"
+    },
+    {
+      "id": 45,
+      "domain": "Leadership Skills",
+      "difficulty": "medium",
+      "question": "How should a leader handle team conflicts?",
+      "choices": [
+        "Address conflicts openly and fairly",
+        "Avoid conflicts",
+        "Always take sides",
+        "Ignore everyone's opinion"
+      ],
+      "answer": "Address conflicts openly and fairly"
+    },
+    {
+      "id": 46,
+      "domain": "Leadership Skills",
+      "difficulty": "medium",
+      "question": "Vision in leadership means:",
+      "choices": [
+        "Having a clear direction for the future",
+        "Good eyesight",
+        "Memorizing rules",
+        "Focusing only on present"
+      ],
+      "answer": "Having a clear direction for the future"
+    },
+    {
+      "id": 47,
+      "domain": "Leadership Skills",
+      "difficulty": "hard",
+      "question": "Which is a challenge for transformational leaders?",
+      "choices": [
+        "Managing resistance to change",
+        "Setting no goals",
+        "Avoiding feedback",
+        "Not supporting team"
+      ],
+      "answer": "Managing resistance to change"
+    },
+    {
+      "id": 48,
+      "domain": "Leadership Skills",
+      "difficulty": "hard",
+      "question": "What is the best way to develop leadership in others?",
+      "choices": [
+        "Mentoring and providing growth opportunities",
+        "Suppressing opinions",
+        "Controlling every action",
+        "Discouraging new ideas"
+      ],
+      "answer": "Mentoring and providing growth opportunities"
+    },
+    {
+      "id": 49,
+      "domain": "Leadership Skills",
+      "difficulty": "hard",
+      "question": "Which leadership theory emphasizes relationships and motivation?",
+      "choices": [
+        "Transformational leadership",
+        "Autocratic leadership",
+        "Laissez-faire leadership",
+        "None of these"
+      ],
+      "answer": "Transformational leadership"
+    },
+    {
+      "id": 50,
+      "domain": "Leadership Skills",
+      "difficulty": "medium",
+      "question": "How can a leader inspire trust?",
+      "choices": [
+        "By being consistent and honest",
+        "By hiding mistakes",
+        "By favoritism",
+        "By ignoring commitments"
+      ],
+      "answer": "By being consistent and honest"
+    },
+  
+    
+    {
+      "id": 51,
+      "domain": "Communication Skills",
+      "difficulty": "easy",
+      "question": "Effective communication requires:",
+      "choices": [
+        "Active listening",
+        "Interrupting",
+        "Ignoring messages",
+        "Only speaking"
+      ],
+      "answer": "Active listening"
+    },
+    {
+      "id": 52,
+      "domain": "Communication Skills",
+      "difficulty": "easy",
+      "question": "Which is a form of non-verbal communication?",
+      "choices": ["Body language", "Written memo", "Email", "Phone call"],
+      "answer": "Body language"
+    },
+    {
+      "id": 53,
+      "domain": "Communication Skills",
+      "difficulty": "easy",
+      "question": "What is 'feedback' in communication?",
+      "choices": [
+        "Response to a message",
+        "Starting a conversation",
+        "Ignoring someone's idea",
+        "Writing an essay"
+      ],
+      "answer": "Response to a message"
+    },
+    {
+      "id": 54,
+      "domain": "Communication Skills",
+      "difficulty": "medium",
+      "question": "How can you ensure your message is clear?",
+      "choices": [
+        "Use simple language and be concise",
+        "Use jargon",
+        "Speak quickly",
+        "Add unrelated details"
+      ],
+      "answer": "Use simple language and be concise"
+    },
+    {
+      "id": 55,
+      "domain": "Communication Skills",
+      "difficulty": "medium",
+      "question": "What is 'active listening'?",
+      "choices": [
+        "Paying attention, showing understanding, and providing feedback",
+        "Multitasking",
+        "Interrupting often",
+        "Planning your next talk"
+      ],
+      "answer": "Paying attention, showing understanding, and providing feedback"
+    },
+    {
+      "id": 56,
+      "domain": "Communication Skills",
+      "difficulty": "medium",
+      "question": "Why is non-verbal communication important?",
+      "choices": [
+        "It conveys emotions and reinforces messages",
+        "It is less important than words",
+        "It often confuses people",
+        "It is never considered in communication"
+      ],
+      "answer": "It conveys emotions and reinforces messages"
+    },
+    {
+      "id": 57,
+      "domain": "Communication Skills",
+      "difficulty": "hard",
+      "question": "What is 'barrier to communication'?",
+      "choices": [
+        "Anything that hinders message delivery",
+        "Clear articulation",
+        "Frequent feedback",
+        "Polite language"
+      ],
+      "answer": "Anything that hinders message delivery"
+    },
+    {
+      "id": 58,
+      "domain": "Communication Skills",
+      "difficulty": "hard",
+      "question": "Which technique improves communication in a conflict?",
+      "choices": [
+        "Using 'I' statements",
+        "Interrupting frequently",
+        "Raising your voice",
+        "Using technical jargon"
+      ],
+      "answer": "Using 'I' statements"
+    },
+    {
+      "id": 59,
+      "domain": "Communication Skills",
+      "difficulty": "hard",
+      "question": "Which is crucial for effective written communication?",
+      "choices": [
+        "Clarity and conciseness",
+        "Long paragraphs",
+        "Complex vocabulary",
+        "Unstructured format"
+      ],
+      "answer": "Clarity and conciseness"
+    },
+    {
+      "id": 60,
+      "domain": "Communication Skills",
+      "difficulty": "medium",
+      "question": "What is 'context' in communication?",
+      "choices": [
+        "The situation or environment in which communication happens",
+        "The words used",
+        "Grammar only",
+        "The time of day"
+      ],
+      "answer": "The situation or environment in which communication happens"
+    }
+  ]
+  
