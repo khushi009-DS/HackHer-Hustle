@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .profile-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .profile-header h2 {
+      margin: 0;
+    }
+
+    .section {
+      margin-top: 2rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-header h3 {
+      margin: 0;
+    }
+
+    .btn {
+      background-color: #1e40af;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #374bb6;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .skill {
+      background-color: #e0e7ff;
+      color: #1e40af;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 500;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+
+    #calendar {
+      max-width: 100%;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="profile-container">
+  <!-- Profile Header -->
+  <div class="profile-header">
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon">
+    <div>
+      <h2 id="user-name">{{ user.name }}</h2>
+      <p>Email: <span id="user-email">{{ user.email }}</span></p>
+    </div>
+  </div>
+
+  <!-- Upcoming Events -->
+  <div class="section">
+    <div class="section-header">
+      <h3>Upcoming Events</h3>
+      <button class="btn" onclick="addEvent()">Add Event</button>
+    </div>
+    <div id="calendar"></div>
+  </div>
+
+  <!-- Test History -->
+  <div class="section">
+    <div class="section-header">
+      <h3>Test History</h3>
+      <button class="btn" onclick="addTest()">Add Test</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Score</th>
+          <th>Level Achieved</th>
+        </tr>
+      </thead>
+      <tbody id="test-history">
+        <!-- Dynamically added -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Skills -->
+  <div class="section">
+    <div class="section-header">
+      <h3>Skills</h3>
+      <button class="btn" onclick="addSkill()">Add Skill</button>
+    </div>
+    <div class="skills-list" id="skills-list">
+      <!-- Dynamically added -->
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      events: []
+    });
+    calendar.render();
+    window.myCalendar = calendar;
+  });
+
+  function addSkill() {
+    const skill = prompt("Enter skill:");
+    if (skill) {
+      const skillDiv = document.getElementById("skills-list");
+      const newSkill = document.createElement("span");
+      newSkill.className = "skill";
+      newSkill.textContent = skill;
+      skillDiv.appendChild(newSkill);
+    }
+  }
+
+  function addTest() {
+    const domain = prompt("Enter Domain:");
+    const score = prompt("Enter Test Score:");
+    const level = prompt("Enter Level Achieved:");
+    if (domain && score && level) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${domain}</td><td>${score}</td><td>${level}</td>`;
+      document.getElementById("test-history").appendChild(row);
+    }
+  }
+
+  function addEvent() {
+    const title = prompt("Event Title:");
+    const date = prompt("Event Date (YYYY-MM-DD):");
+    if (title && date) {
+      window.myCalendar.addEvent({ title, start: date });
+    }
+  }
+</script>
+
+</body>
+</html>
