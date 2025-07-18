@@ -1,0 +1,101 @@
+{
+  "jobs_over_time": {
+    "2024-12-23": 321,
+    "2024-12-24": 326,
+    "2024-12-25": 311,
+    "2024-12-26": 335,
+    "2024-12-27": 322,
+    "2024-12-28": 306,
+    "2024-12-29": 344,
+    "2024-12-30": 330,
+    "2024-12-31": 337,
+    "2025-01-01": 314,
+    "2025-01-02": 323,
+    "2025-01-03": 321,
+    "2025-01-04": 328,
+    "2025-01-05": 321,
+    "2025-01-06": 315,
+    "2025-01-07": 330,
+    "2025-01-08": 295,
+    "2025-01-09": 322,
+    "2025-01-10": 333,
+    "2025-01-11": 338,
+    "2025-01-12": 328,
+    "2025-01-13": 313,
+    "2025-01-14": 312,
+    "2025-01-15": 328,
+    "2025-01-16": 332,
+    "2025-01-17": 311,
+    "2025-01-18": 318,
+    "2025-01-19": 317,
+    "2025-01-20": 341,
+    "2025-01-21": 317,
+    "2025-01-22": 311
+  },
+  "top_skills": {
+    "java": 3111,
+    "python": 3096,
+    "ui/ux": 3040,
+    "react": 3027,
+    "c++": 3009,
+    "aws": 2981,
+    "excel": 2962,
+    "digital marketing": 2959,
+    "sql": 2948,
+    "machine learning": 2867
+  },
+  "job_roles": {
+    "Cyber Security Analyst": 1045,
+    "Software Engineer": 1038,
+    "Product Manager": 1037,
+    "Marketing Executive": 1028,
+    "Graphic Designer": 988,
+    "Financial Analyst": 980,
+    "Business Analyst": 978,
+    "HR Manager": 977,
+    "Data Scientist": 974,
+    "Sales Representative": 955
+  },
+  "companies": {
+    "Amazon": 1043,
+    "HCL": 1034,
+    "Wipro": 1026,
+    "Deloitte": 1021,
+    "TCS": 1019,
+    "Google": 1008,
+    "Infosys": 985,
+    "Accenture": 963,
+    "IBM": 961,
+    "Microsoft": 940
+  },
+  "locations": {
+    "Ahmedabad": 1035,
+    "Hyderabad": 1033,
+    "Jaipur": 1019,
+    "Noida": 1016,
+    "Kolkata": 1007,
+    "Bangalore": 1006,
+    "Delhi": 992,
+    "Chennai": 989,
+    "Pune": 952,
+    "Mumbai": 951
+  },
+  "job_types": {
+    "Part-time": 2550,
+    "Full-time": 2538,
+    "Internship": 2516,
+    "Contract": 2396
+  },
+  "education_requirements": {
+    "B.Sc": 2018,
+    "B.Tech": 2016,
+    "PhD": 2007,
+    "M.Tech": 1998,
+    "MBA": 1961
+  },
+  "job_portals": {
+    "Indeed": 3408,
+    "Naukri.com": 3368,
+    "LinkedIn": 3224
+  }
+}
