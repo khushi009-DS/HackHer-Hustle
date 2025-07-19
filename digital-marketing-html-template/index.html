@@ -76,7 +76,7 @@
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Jobs</a>
                     <div class="dropdown-menu rounded-0 m-0">
-                    <a href="job-recommendation.html" class="dropdown-item">Job Recommendation</a>
+                    <!--<a href="job-recommendation.html" class="dropdown-item">Job Recommendation</a>-->
                     <a href="job-prediction.html" class="dropdown-item">Job Prediction</a>
                     <a href="http://localhost:8501" target="_blank" class="dropdown-item">Job Search</a>
 
@@ -84,15 +84,43 @@
                 </div>
 
                 <a href="adaptive-test.html" class="nav-item nav-link">Skills</a>
-                <a href="project.html" class="nav-item nav-link">Resume Builder</a>
+                <!-- <a href="project.html" class="nav-item nav-link">Resume Builder</a> -->
                 <a href="ch.html" class="nav-item nav-link">AI Advisor</a>
                 <a href="dashboard.html" class="nav-item nav-link">Dashboard</a>
                 </div>
+                <div class="ms-auto d-none d-lg-flex align-items-center">
 
-                <div class="ms-auto d-none d-lg-block">
-                <a href="signup/signup.html" class="btn btn-primary rounded-pill py-2 px-3 me-2">SignUp</a>
-                <a href="login.html" class="btn btn-primary rounded-pill py-2 px-3">Login</a>
-                <button class="logout" onclick="logout()">Log Out</button>
+                    <!-- 🔹 SignUp Button -->
+                    <a href="signup/signup.html" class="btn btn-primary rounded-pill py-2 px-3 me-2">
+                      SignUp
+                    </a>
+                  
+                    <!-- 🔹 Login Button -->
+                    <a href="login.html" class="btn btn-primary rounded-pill py-2 px-3 me-3">
+                      Login
+                    </a>
+                  
+                    <!-- 🔹 User Profile Dropdown -->
+                    <div class="nav-item dropdown me-3">
+                      <a href="#" class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" title="User Menu">
+                        <i class="fas fa-user-circle fa-2x"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-end rounded-0 m-0">
+                        <a href="http://127.0.0.1:5000/profile" class="dropdown-item" target="_blank">
+                            <i class="fas fa-user me-2"></i> View Profile
+                          </a>
+                        <a href="dashboard.html" class="dropdown-item">
+                          <i class="fas fa-chart-line me-2"></i> Dashboard
+                        </a>
+                        <hr class="dropdown-divider">
+                        <button onclick="logout()" class="dropdown-item text-danger">
+                          <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </button>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  
                 </div>
             </div>
             </nav>
@@ -263,7 +291,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item position-relative h-100">
                         <div class="service-text rounded p-5">
                             <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 64px; height: 64px;">
@@ -276,7 +304,7 @@
                             <a class="text-primary fw-medium" href="">Read More<i class="bi bi-chevron-double-right ms-2"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item position-relative h-100">
                         <div class="service-text rounded p-5">
@@ -291,7 +319,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="service-item position-relative h-100">
                         <div class="service-text rounded p-5">
                             <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 64px; height: 64px;">
@@ -304,8 +332,8 @@
                             <a class="text-primary fw-medium" href="">Read More<i class="bi bi-chevron-double-right ms-2"></i></a>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                </div> -->
+                <!-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-item position-relative h-100">
                         <div class="service-text rounded p-5">
                             <div class="btn-square bg-light rounded-circle mx-auto mb-4" style="width: 64px; height: 64px;">
@@ -318,7 +346,7 @@
                             <a class="text-primary fw-medium" href="">Read More<i class="bi bi-chevron-double-right ms-2"></i></a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="service-item position-relative h-100">
                         <div class="service-text rounded p-5">
@@ -385,7 +413,7 @@
                     <a class="btn btn-link" href="">Home</a>
                     <a class="btn btn-link" href="">Jobs</a>
                     <a class="btn btn-link" href="">Skills</a>
-                    <a class="btn btn-link" href="">Resume Builder</a>
+                    <!-- <a class="btn btn-link" href="">Resume Builder</a> -->
                     <a class="btn btn-link" href="ch.html">AI Advisor</a>
                      <a class="btn btn-link" href="dashboard.html">Dashboard</a>
             </div>

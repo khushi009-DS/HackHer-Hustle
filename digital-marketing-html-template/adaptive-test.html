@@ -298,6 +298,7 @@ button:hover, .choices button:hover {
     showNextQuestion();
   }
 
+
   function showResult() {
     document.getElementById("question-screen").classList.add("hidden");
     document.getElementById("result-screen").classList.remove("hidden");
@@ -313,6 +314,37 @@ button:hover, .choices button:hover {
       <strong>Level Achieved:</strong> ${level}
     `;
   }
+  function saveTestResult(domain, score, level) {
+    let results = JSON.parse(localStorage.getItem('testResults') || '[]');
+    results.push({
+        domain: domain,
+        score: score,
+        level: level,
+        date: new Date().toLocaleDateString()
+    });
+    localStorage.setItem('testResults', JSON.stringify(results));
+}
+
+
+
+// Simulate test submission
+function submitTest() {
+  const domain = "AI";
+  const score = 90;
+  const level = "Expert";
+
+  let results = JSON.parse(localStorage.getItem("testResults") || '[]');
+  results.push({
+    domain: domain,
+    score: score,
+    level: level,
+    date: new Date().toLocaleDateString()
+  });
+  localStorage.setItem("testResults", JSON.stringify(results));
+  alert("Test result saved.");
+}
+submitTest();
+
 </script>
 
 </body>

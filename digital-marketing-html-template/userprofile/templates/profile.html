@@ -106,13 +106,13 @@
 
 <div class="profile-container">
   <!-- Profile Header -->
-  <div class="profile-header">
+  <!-- <div class="profile-header">
     <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="User Icon">
     <div>
       <h2 id="user-name">{{ user.name }}</h2>
       <p>Email: <span id="user-email">{{ user.email }}</span></p>
     </div>
-  </div>
+  </div> -->
 
   <!-- Upcoming Events -->
   <div class="section">
@@ -125,24 +125,60 @@
 
   <!-- Test History -->
   <div class="section">
-    <div class="section-header">
+    <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
       <h3>Test History</h3>
-      <button class="btn" onclick="addTest()">Add Test</button>
+      <button class="btn" onclick="addTest()" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px;">Add Test</button>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Domain</th>
-          <th>Score</th>
-          <th>Level Achieved</th>
-        </tr>
-      </thead>
-      <tbody id="test-history">
-        <!-- Dynamically added -->
-      </tbody>
-    </table>
+  
+    <div style="overflow-x: auto; margin-top: 15px;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; min-width: 600px; font-size: 15px;">
+        <thead style="background-color: #f4f6f8; font-weight: bold;">
+          <tr>
+            <th style="padding: 12px; border: 1px solid #ddd;">Domain</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Score</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Level Achieved</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Date</th>
+          </tr>
+        </thead>
+        <tbody id="test-history">
+          <!-- Dynamically populated rows -->
+        </tbody>
+      </table>
+    </div>
   </div>
-
+  
+  
+  <script>
+    // Redirects to your adaptive test page
+    function addTest() {
+      window.location.href = "/digital-marketing-html-template/adaptive-test.html";
+    }
+  
+    // Load test history from localStorage and show in the table
+    function loadTestResults() {
+      const results = JSON.parse(localStorage.getItem('testResults') || '[]');
+      const tbody = document.getElementById('test-history');
+      tbody.innerHTML = "";
+      if (results.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:#888;">No test records found.</td></tr>';
+        return;
+      }
+      results.forEach(result => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${result.domain}</td>
+          <td>${result.score}</td>
+          <td>${result.level}</td>
+          <td>${result.date || ''}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+  
+    // Load results when page is ready
+    document.addEventListener('DOMContentLoaded', loadTestResults);
+  </script>
+  
   <!-- Skills -->
   <div class="section">
     <div class="section-header">
@@ -178,17 +214,19 @@
     }
   }
 
+  // function addTest() {
+  //   const domain = prompt("Enter Domain:");
+  //   const score = prompt("Enter Test Score:");
+  //   const level = prompt("Enter Level Achieved:");
+  //   if (domain && score && level) {
+  //     const row = document.createElement("tr");
+  //     row.innerHTML = `<td>${domain}</td><td>${score}</td><td>${level}</td>`;
+  //     document.getElementById("test-history").appendChild(row);
+  //   }
+  // }
   function addTest() {
-    const domain = prompt("Enter Domain:");
-    const score = prompt("Enter Test Score:");
-    const level = prompt("Enter Level Achieved:");
-    if (domain && score && level) {
-      const row = document.createElement("tr");
-      row.innerHTML = `<td>${domain}</td><td>${score}</td><td>${level}</td>`;
-      document.getElementById("test-history").appendChild(row);
-    }
+    window.location.href="/digital-marketing-html-template/adaptive-test.html"; // Change the path to your target file
   }
-
   function addEvent() {
     const title = prompt("Event Title:");
     const date = prompt("Event Date (YYYY-MM-DD):");
@@ -196,6 +234,29 @@
       window.myCalendar.addEvent({ title, start: date });
     }
   }
+  function loadTestResults() {
+  const results = JSON.parse(localStorage.getItem("testResults") || '[]');
+  const tbody = document.getElementById("test-history");
+  tbody.innerHTML = "";
+
+  if (results.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4">No test records found.</td></tr>';
+    return;
+  }
+
+  results.forEach(r => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${r.domain}</td>
+      <td>${r.score}</td>
+      <td>${r.level}</td>
+      <td>${r.date}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+window.onload = loadTestResults;
 </script>
 
 </body>
