@@ -78,7 +78,8 @@
                     <div class="dropdown-menu rounded-0 m-0">
                     <a href="job-recommendation.html" class="dropdown-item">Job Recommendation</a>
                     <a href="job-prediction.html" class="dropdown-item">Job Prediction</a>
-                    <a href="job_filter_app.py" class="dropdown-item">Job Search</a>
+                    <a href="http://localhost:8501" target="_blank" class="dropdown-item">Job Search</a>
+
                     </div>
                 </div>
 
@@ -89,8 +90,9 @@
                 </div>
 
                 <div class="ms-auto d-none d-lg-block">
-                <a href="signup.html" class="btn btn-primary rounded-pill py-2 px-3 me-2">SignUp</a>
+                <a href="signup/signup.html" class="btn btn-primary rounded-pill py-2 px-3 me-2">SignUp</a>
                 <a href="login.html" class="btn btn-primary rounded-pill py-2 px-3">Login</a>
+                <button class="logout" onclick="logout()">Log Out</button>
                 </div>
             </div>
             </nav>
@@ -424,6 +426,27 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
+
+  <script>
+    const userEmail = localStorage.getItem("currentUserEmail");
+
+    if (userEmail) {
+      document.getElementById("welcome").textContent = `Welcome, ${userEmail}!`;
+    } else {
+      // If not logged in, redirect to signup
+      window.location.href = "signup.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("currentUserEmail");
+      window.location.href = "signup.html";
+    }
+  
+    
+
+
+  </script>
 
     
 </body>

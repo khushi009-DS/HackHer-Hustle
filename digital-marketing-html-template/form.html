@@ -7,30 +7,44 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #e6f2ff;
+      background-color: rgba(0, 0, 0, 0.2);
       margin: 0;
+      padding: 0;
+    }
+
+    #popupForm {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 0; right: 0;
+      margin: auto;
+      width: 90%;
+      max-width: 900px;
+      background: white;
       padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+      z-index: 9999;
+      animation: slideIn 0.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
       text-align: center;
       color: #007bff;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     form {
-      max-width: 850px;
-      margin: auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
-    .section {
-      margin-bottom: 30px;
-    }
-
+    .section { margin-bottom: 20px; }
     .section h3 {
       margin-bottom: 10px;
       color: #0056b3;
@@ -38,24 +52,12 @@
       padding-bottom: 5px;
     }
 
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-
+    label { display: block; margin: 10px 0 5px; }
     input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
+      width: 100%; padding: 10px; border: 1px solid #ccc;
+      border-radius: 6px; font-size: 14px; margin-bottom: 10px;
     }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
+    textarea { resize: vertical; min-height: 80px; }
 
     button {
       background-color: #007bff;
@@ -67,33 +69,23 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #0056b3;
-    }
+    button:hover { background-color: #0056b3; }
 
-    /* Skill Pill Styles */
     .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;
     }
 
     .skill-pill {
       padding: 10px 18px;
       background-color: white;
-      color: #222;
-      border-radius: 25px;
       border: 1px solid #ccc;
+      border-radius: 25px;
       cursor: pointer;
-      transition: 0.3s;
       user-select: none;
     }
 
     .skill-pill.selected {
-      background-color: #007bff;
-      color: white;
-      border-color: #007bff;
+      background: #007bff; border-color: #007bff; color: #fff;
     }
 
     .view-more {
@@ -103,122 +95,90 @@
       display: inline-block;
       font-weight: bold;
     }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: red;
+    }
   </style>
 </head>
 <body>
 
-  <h2>User Profile Form</h2>
-  <form id="userProfileForm" action="#" method="post" enctype="multipart/form-data">
+  <!-- 🚨 Popup Form -->
+  <div id="popupForm">
+    <button class="close-btn" onclick="closeForm()">×</button>
+    <h2>Welcome! Complete Your Profile</h2>
+    <form id="userProfileForm">
 
-    <!-- 1. Basic Information -->
-    <div class="section">
-      <h3>1. Basic Information</h3>
-      <label>Full Name</label>
-      <input type="text" name="fullname" required>
+      <!-- Basic Info -->
+      <div class="section">
+        <h3>1. Basic Information</h3>
+        <label>Full Name</label>
+        <input type="text" name="fullname" required>
 
-      <label>Email</label>
-      <input type="email" name="email" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
 
-      <label>Phone Number</label>
-      <input type="tel" name="phone" required>
+        <label>Phone Number</label>
+        <input type="tel" name="phone" required>
 
-      <label>Date of Birth</label>
-      <input type="date" name="dob">
+        <label>Date of Birth</label>
+        <input type="date" name="dob">
 
-      <label>Gender</label>
-      <select name="gender">
-        <option value="">Select</option>
-        <option>Male</option>
-        <option>Female</option>
-        <option>Other</option>
-      </select>
-    </div>
-
-    <!-- 2. Location Details -->
-    <div class="section">
-      <h3>2. Location Details</h3>
-      <label>Country</label>
-      <input type="text" name="country">
-
-      <label>City</label>
-      <input type="text" name="city">
-
-      <label>Willing to Relocate?</label>
-      <select name="relocate">
-        <option value="">Select</option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-
-      <label>Preferred Job Locations</label>
-      <textarea name="preferred_locations"></textarea>
-    </div>
-
-    <!-- 3. Education -->
-    <div class="section">
-      <h3>3. Education</h3>
-      <label>Highest Qualification</label>
-      <input type="text" name="qualification">
-
-      <label>University / College</label>
-      <input type="text" name="university">
-
-      <label>Field of Study</label>
-      <input type="text" name="field">
-
-      <label>Graduation Year</label>
-      <input type="number" name="grad_year" min="1900" max="2100">
-    </div>
-
-    <!-- 4. Work Experience -->
-    <div class="section">
-      <h3>4. Work Experience</h3>
-      <label>Previous Job Title</label>
-      <input type="text" name="job_title">
-
-      <label>Company Name</label>
-      <input type="text" name="company">
-
-      <label>Start Date</label>
-      <input type="month" name="start_date">
-
-      <label>End Date / Present</label>
-      <input type="month" name="end_date">
-
-      <label>Responsibilities / Achievements</label>
-      <textarea name="responsibilities"></textarea>
-    </div>
-
-    <!-- 5. Skills -->
-    <div class="section">
-      <h3>5. Skills (Click to select)</h3>
-      <label>Select the skills you'd like to add:</label>
-      <div class="skills" id="skillsContainer">
-        <div class="skill-pill">Data Analysis</div>
-        <div class="skill-pill">SQL</div>
-        <div class="skill-pill">Python Programming</div>
-        <div class="skill-pill">Data Visualization</div>
-        <div class="skill-pill">Microsoft Excel</div>
-        <div class="skill-pill">Statistics</div>
-        <div class="skill-pill">Data Quality</div>
-        <div class="skill-pill">Data Management</div>
-        <div class="skill-pill">I don't know</div>
+        <label>Gender</label>
+        <select name="gender">
+          <option value="">Select</option>
+          <option>Male</option><option>Female</option><option>Other</option>
+        </select>
       </div>
 
-      <div class="view-more" onclick="showMoreSkills()">+ View more</div>
+      <!-- More sections ... -->
+      <!-- Add Location, Education, Experience similarly -->
 
-      <!-- Hidden input to store selected skills -->
-      <input type="hidden" name="selected_skills" id="selectedSkills">
-    </div>
+      <!-- Skills -->
+      <div class="section">
+        <h3>5. Skills (Click to select)</h3>
+        <div class="skills" id="skillsContainer">
+          <div class="skill-pill">Data Analysis</div>
+          <div class="skill-pill">SQL</div>
+          <div class="skill-pill">Python</div>
+          <div class="skill-pill">Excel</div>
+          <div class="skill-pill">Machine Learning</div>
+        </div>
+        <div class="view-more" onclick="showMoreSkills()">+ View more</div>
+        <input type="hidden" name="selected_skills" id="selectedSkills">
+      </div>
 
-    <div style="text-align:center;">
-      <button type="submit">Save Profile</button>
-    </div>
+      <div style="text-align:center; margin-top:20px;">
+        <button type="submit">Save Profile</button>
+      </div>
 
-  </form>
+    </form>
+  </div>
 
   <script>
-    // Toggle selected skill pills
+    const popupForm = document.getElementById("popupForm");
+    const profileForm = document.getElementById("userProfileForm");
+
+    // Show form only if no profile saved
+    window.onload = () => {
+      const savedProfile = localStorage.getItem("userProfile");
+      if (!savedProfile) {
+        popupForm.style.display = "block";
+      }
+    };
+
+    function closeForm() {
+      popupForm.style.display = "none";
+    }
+
+    // Skill pill selection
     const container = document.getElementById('skillsContainer');
     container.addEventListener('click', (e) => {
       if (e.target.classList.contains('skill-pill')) {
@@ -229,15 +189,13 @@
 
     function updateSelectedSkills() {
       const selected = document.querySelectorAll('.skill-pill.selected');
-      const selectedSkills = Array.from(selected).map(skill => skill.textContent);
+      const selectedSkills = Array.from(selected).map(s => s.textContent);
       document.getElementById('selectedSkills').value = selectedSkills.join(', ');
     }
 
     function showMoreSkills() {
-      const extraSkills = [
-        "Power BI", "Machine Learning", "R Programming", "Business Analytics", "Tableau", "Data Engineering"
-      ];
-      extraSkills.forEach(skill => {
+      const more = ["Power BI", "R", "Tableau", "Git", "TensorFlow"];
+      more.forEach(skill => {
         const pill = document.createElement("div");
         pill.className = "skill-pill";
         pill.textContent = skill;
@@ -246,13 +204,21 @@
       document.querySelector('.view-more').style.display = 'none';
     }
 
-    // On form submit
-    document.getElementById('userProfileForm').addEventListener('submit', function(e) {
+    // Save form to localStorage
+    profileForm.addEventListener("submit", function(e) {
+      e.preventDefault();
       updateSelectedSkills();
-      // You can handle form data here (e.g., send to server)
-      // e.preventDefault(); // Uncomment this to prevent actual submission for demo
+
+      const formData = new FormData(profileForm);
+      const data = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
+
+      localStorage.setItem("userProfile", JSON.stringify(data));
+      alert("Profile saved! 🎉");
+      popupForm.style.display = "none";
     });
   </script>
-
 </body>
 </html>

@@ -1,156 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Signup Page</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Signup with LocalStorage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #e6f2ff; /* Light blue background */
       font-family: Arial, sans-serif;
-    }
-
-    .signup-container {
+      background: #f0f2f5;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
-
-    .signup-box {
-      background-color: white;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-      width: 350px;
+    .box {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
     }
-
-    .signup-box h2 {
+    .box h2 {
       text-align: center;
-      color: #007bff;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
-
-    .signup-box input {
+    input {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
+      padding: 10px;
+      margin-bottom: 12px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 15px;
+      border-radius: 4px;
     }
-
-    .signup-box button {
+    button {
       width: 100%;
-      padding: 12px;
-      background-color: #007bff;
-      color: white;
+      padding: 10px;
+      background-color: #2673fa;
       border: none;
-      border-radius: 6px;
-      font-size: 16px;
+      border-radius: 4px;
+      color: #fff;
       cursor: pointer;
-      margin-top: 15px;
+      font-weight: bold;
     }
-
-    .signup-box button:hover {
-      background-color: #0056b3;
-    }
-
-    .signup-box p {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    .signup-box p a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    .signup-box p a:hover {
-      text-decoration: underline;
-    }
-
     .message {
       text-align: center;
-      font-size: 14px;
       margin-top: 10px;
+      font-size: 14px;
     }
-
-    .message.success {
-      color: green;
-    }
-
-    .message.error {
-      color: red;
-    }
+    .success { color: green; }
+    .error { color: red; }
   </style>
 </head>
 <body>
 
-  <div class="signup-container">
-    <div class="signup-box">
-      <h2>Create Account</h2>
-      <input type="text" id="username" placeholder="Username" required>
-      <input type="email" id="email" placeholder="Email" required>
-      <input type="password" id="password" placeholder="Password" required>
-      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-      <button onclick="signup()">Sign Up</button>
-      <p>Already have an account? <a href="#">Login</a></p>
-      <div class="message" id="msg"></div>
-    </div>
+  <div class="box">
+    <h2>Signup</h2>
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+    <button onclick="signup()">Sign Up</button>
+    <div id="message" class="message"></div>
+    <p style="text-align:center; margin-top:20px;">
+      Already have an account? <a href="login.html">Log in</a>
+    </p>
+    
   </div>
-
   <script>
     function signup() {
-      const username = document.getElementById("username").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const confirmPassword = document.getElementById("confirmPassword").value.trim();
-      const msg = document.getElementById("msg");
-
-      if (!username || !email || !password || !confirmPassword) {
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const msg = document.getElementById('message');
+  
+      msg.textContent = "";
+      msg.className = "message";
+  
+      if (!email || !password || !confirmPassword) {
         msg.textContent = "All fields are required.";
-        msg.className = "message error";
+        msg.classList.add("error");
         return;
       }
-
+  
       if (!validateEmail(email)) {
-        msg.textContent = "Enter a valid email address.";
-        msg.className = "message error";
+        msg.textContent = "Invalid email format.";
+        msg.classList.add("error");
         return;
       }
-
+  
+      if (password.length < 6) {
+        msg.textContent = "Password must be at least 6 characters.";
+        msg.classList.add("error");
+        return;
+      }
+  
       if (password !== confirmPassword) {
         msg.textContent = "Passwords do not match.";
-        msg.className = "message error";
+        msg.classList.add("error");
         return;
       }
-
-      msg.textContent = "Signup successful!";
-      msg.className = "message success";
-
-      // Clear form after 3 seconds (optional)
-      setTimeout(() => {
-        document.getElementById("username").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("password").value = "";
-        document.getElementById("confirmPassword").value = "";
-        msg.textContent = "";
-      }, 3000);
+  
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const userExists = users.some(user => user.email === email);
+  
+      if (userExists) {
+        msg.innerHTML = `
+          This email is already registered.<br>
+          <button onclick="redirectToLogin()" style="margin-top: 10px; padding: 8px 16px; background-color:#444; border:none; color:#fff; cursor:pointer; border-radius:4px;">
+            Log in instead
+          </button>
+        `;
+        msg.classList.add("error");
+        return;
+      }
+  
+      // Save new user
+      users.push({ email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUserEmail", email);
+  
+      // ✅ Redirect after signup
+      window.location.href = "index.html";
     }
-
+  
+    function redirectToLogin() {
+      window.location.href = "login.html";
+    }
+  
     function validateEmail(email) {
-      const re = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-      return re.test(email);
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
     }
   </script>
+  
 
 </body>
 </html>
